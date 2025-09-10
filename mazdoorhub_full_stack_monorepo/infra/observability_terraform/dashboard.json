@@ -1,0 +1,127 @@
+{
+  "widgets": [
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/ApiGateway",
+            "Count",
+            "ApiId",
+            "${api_gateway_id}",
+            {
+              "label": "Req Count",
+              "stat": "Sum"
+            }
+          ],
+          [
+            ".",
+            "5xx",
+            ".",
+            ".",
+            {
+              "label": "5XX",
+              "stat": "Sum"
+            }
+          ],
+          [
+            ".",
+            "Latency",
+            ".",
+            ".",
+            {
+              "label": "Latency p95",
+              "stat": "p95"
+            }
+          ]
+        ],
+        "view": "timeSeries",
+        "region": "${region}",
+        "title": "HTTP API Traffic & Latency",
+        "period": 60
+      }
+    },
+    {
+      "type": "metric",
+      "x": 12,
+      "y": 0,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/ApiGateway",
+            "Messages",
+            "ApiId",
+            "${ws_api_id}",
+            {
+              "label": "WS Messages",
+              "stat": "Sum"
+            }
+          ],
+          [
+            ".",
+            "ConnectCount",
+            ".",
+            ".",
+            {
+              "label": "WS Connects",
+              "stat": "Sum"
+            }
+          ],
+          [
+            ".",
+            "DisconnectCount",
+            ".",
+            ".",
+            {
+              "label": "WS Disconnects",
+              "stat": "Sum"
+            }
+          ]
+        ],
+        "view": "timeSeries",
+        "region": "${region}",
+        "title": "WebSocket API",
+        "period": 60
+      }
+    },
+    {
+      "type": "metric",
+      "x": 0,
+      "y": 6,
+      "width": 12,
+      "height": 6,
+      "properties": {
+        "metrics": [
+          [
+            "AWS/RDS",
+            "CPUUtilization",
+            "DBInstanceIdentifier",
+            "${rds_instance_id}",
+            {
+              "stat": "Average"
+            }
+          ],
+          [
+            ".",
+            "FreeableMemory",
+            ".",
+            ".",
+            {
+              "stat": "Average"
+            }
+          ]
+        ],
+        "view": "timeSeries",
+        "region": "${region}",
+        "title": "RDS Health",
+        "period": 60
+      }
+    }
+  ]
+}

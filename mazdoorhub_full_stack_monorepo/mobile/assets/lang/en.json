@@ -1,0 +1,18 @@
+{
+  "app_title": "MazdoorHub",
+  "jobs": "Jobs",
+  "post_job": "Post Job",
+  "chat": "Chat",
+  "wallet": "Wallet",
+  "create_job": "Create Job",
+  "category": "Category",
+  "price": "Price (Rs)",
+  "description": "Description (optional)",
+  "map": "Map",
+  "list": "List",
+  "loading": "Loading...",
+  "job_created": "Job created",
+  "language": "Language",
+  "english": "English",
+  "urdu": "Urdu"
+}

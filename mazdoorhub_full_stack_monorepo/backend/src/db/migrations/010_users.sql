@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS users ( id uuid PRIMARY KEY DEFAULT gen_random_uuid(), name varchar(120), role varchar(16) NOT NULL DEFAULT 'EMPLOYER', phone varchar(32), cnic_enc bytea, created_at timestamptz NOT NULL DEFAULT now());

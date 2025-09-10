@@ -1,0 +1,30 @@
+{
+  "name": "mazdoorhub-backend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "sls offline --stage dev",
+    "build": "tsc -p tsconfig.json",
+    "deploy": "sls deploy --stage dev",
+    "migrate:run": "node dist/db/run-migrations.js"
+  },
+  "dependencies": {
+    "@vendia/serverless-express": "^4.10.2",
+    "@aws-sdk/client-cloudwatch": "^3.632.0",
+    "@aws-sdk/client-secrets-manager": "^3.632.0",
+    "@aws-sdk/client-kms": "^3.632.0",
+    "express": "^4.19.2",
+    "body-parser": "^1.20.2",
+    "pg": "^8.11.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.126",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.12",
+    "serverless": "^3.38.0",
+    "serverless-esbuild": "^1.53.1",
+    "serverless-offline": "^13.4.0",
+    "typescript": "^5.4.5"
+  }
+}

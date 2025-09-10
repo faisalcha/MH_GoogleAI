@@ -1,0 +1,1 @@
+resource "aws_kms_key" "pii" { description="MazdoorHub PII CMK"; enable_key_rotation=true; deletion_window_in_days=30 } resource "aws_kms_alias" "pii" { name="alias/mazdoorhub-pii"; target_key_id=aws_kms_key.pii.key_id } output "pii_kms_key_id" { value=aws_kms_key.pii.key_id }

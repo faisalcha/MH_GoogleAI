@@ -1,0 +1,3 @@
+const { Client } = require('pg'); const fs = require('fs'); const path = require('path');
+(async()=>{ const c=new Client({host:process.env.DB_HOST,port:process.env.DB_PORT,user:process.env.DB_USER,password:process.env.DB_PASSWORD,database:process.env.DB_NAME,ssl:process.env.DB_SSL==='true'?{rejectUnauthorized:false}:false}); await c.connect();
+try{ const dir=path.join(__dirname,'migrations'); const files=fs.readdirSync(dir).filter(f=>f.endsWith('.sql')).sort(); for(const f of files){ const sql=fs.readFileSync(path.join(dir,f),'utf8'); await c.query(sql); console.log('Applied', f); } } finally { await c.end(); } })().catch(e=>{ console.error(e); process.exit(1); });

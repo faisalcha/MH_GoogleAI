@@ -1,0 +1,39 @@
+service: mazdoorhub-backend
+frameworkVersion: '3'
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ap-south-1
+  stage: dev
+  environment:
+    DB_HOST: ${env:DB_HOST}
+    DB_PORT: ${env:DB_PORT}
+    DB_USER: ${env:DB_USER}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_NAME: ${env:DB_NAME}
+    DB_SSL: ${env:DB_SSL}
+    PII_KMS_KEY_ID: ${env:PII_KMS_KEY_ID}
+    WHATSAPP_TOKEN: ${env:WHATSAPP_TOKEN}
+    WHATSAPP_PHONE_ID: ${env:WHATSAPP_PHONE_ID}
+functions:
+  api:
+    handler: dist/handler.handler
+    events: [ { httpApi: '*' } ]
+  notificationsFlush:
+    handler: dist/modules/notifications/flushWorker.handler
+    events: [ { schedule: rate(1 minute) } ]
+  opsMetrics:
+    handler: dist/modules/ops/metrics.handler
+    events: [ { schedule: rate(5 minutes) } ]
+  wsConnect:
+    handler: dist/modules/chat/ws.handler
+    events: [ { websocket: { route: $connect } } ]
+  wsDefault:
+    handler: dist/modules/chat/ws.handler
+    events: [ { websocket: { route: $default } } ]
+  wsDisconnect:
+    handler: dist/modules/chat/ws.handler
+    events: [ { websocket: { route: $disconnect } } ]
+plugins: [serverless-esbuild, serverless-offline]
+custom:
+  esbuild: { bundle: true, sourcemap: true, target: node20, platform: node }

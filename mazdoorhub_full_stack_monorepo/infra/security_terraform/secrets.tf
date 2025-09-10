@@ -1,0 +1,1 @@
+resource "aws_secretsmanager_secret" "db" { name = var.db_secret_name } resource "aws_secretsmanager_secret_version" "dbv" { secret_id = aws_secretsmanager_secret.db.id secret_string = jsonencode({ host="db.example", port=5432, username="app_user", password="change-me", database="mazdoorhub" }) } output "db_secret_arn" { value = aws_secretsmanager_secret.db.arn }
